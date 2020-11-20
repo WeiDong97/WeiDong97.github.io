@@ -9,19 +9,19 @@
   <link rel="preconnect" href="//cdn.jsdelivr.net">
   <title>GMM | Anton home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="GMM-Gaussian Mixture ModelDefinition参数概率密度函数，用gaussian component densities的加权和表示。 GMM参数估计是从训练数据使用迭代期望最大化（EM）算法或最大后验（MAP）估计从一个训练有素的先验模型。 Introduction$$p(\text{x}|\lambda)&#x3D;\sum_{i&#x3D;1}^M\omega_ig(\text{x}">
+  <meta name="description" content="GMM-Gaussian Mixture ModelDefinition参数概率密度函数，用gaussian component densities的加权和表示。 GMM参数估计是从训练数据使用迭代期望最大化（EM）算法或最大后验（MAP）估计从一个训练有素的先验模型。 Introduction p(\text{x}|\lambda)&#x3D;\sum_{i&#x3D;1}^M\omega_ig(\text{x}|">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GMM">
 <meta property="og:url" content="https://weidong97.github.io/GMM.html">
 <meta property="og:site_name" content="Anton home">
-<meta property="og:description" content="GMM-Gaussian Mixture ModelDefinition参数概率密度函数，用gaussian component densities的加权和表示。 GMM参数估计是从训练数据使用迭代期望最大化（EM）算法或最大后验（MAP）估计从一个训练有素的先验模型。 Introduction$$p(\text{x}|\lambda)&#x3D;\sum_{i&#x3D;1}^M\omega_ig(\text{x}">
+<meta property="og:description" content="GMM-Gaussian Mixture ModelDefinition参数概率密度函数，用gaussian component densities的加权和表示。 GMM参数估计是从训练数据使用迭代期望最大化（EM）算法或最大后验（MAP）估计从一个训练有素的先验模型。 Introduction p(\text{x}|\lambda)&#x3D;\sum_{i&#x3D;1}^M\omega_ig(\text{x}|">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://weidong97.github.io/GMM/a1.png">
+<meta property="og:image" content="https://weidong97.github.io/a1.png">
 <meta property="article:published_time" content="2020-11-20T05:33:20.000Z">
-<meta property="article:modified_time" content="2020-11-20T06:42:05.533Z">
+<meta property="article:modified_time" content="2020-11-20T06:49:05.889Z">
 <meta property="article:author" content="Wei Dong">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://weidong97.github.io/GMM/a1.png">
+<meta name="twitter:image" content="https://weidong97.github.io/a1.png">
   
     <link rel="alternative" href="/atom.xml" title="Anton home" type="application/atom+xml">
   
@@ -176,10 +176,14 @@
       
         <h1 id="GMM-Gaussian-Mixture-Model"><a href="#GMM-Gaussian-Mixture-Model" class="headerlink" title="GMM-Gaussian Mixture Model"></a>GMM-Gaussian Mixture Model</h1><h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h2><p>参数概率密度函数，用gaussian component densities的加权和表示。</p>
 <p>GMM参数估计是从训练数据使用迭代期望最大化（EM）算法或最大后验（MAP）估计从一个训练有素的先验模型。</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>$$<br>p(\text{x}|\lambda)=\sum_{i=1}^M\omega_ig(\text{x}|\mu_i,\begin{matrix}\sum_i\end{matrix})<br>$$</p>
-<p>where<br>$$<br>g(\text{x}|\mu_i,\begin{matrix}\sum_i\end{matrix})=\frac{1}{(2\pi)^{D/2}|\sum_i|^{1/2}}\text{exp}\left{-\frac{1}{2}(\text{x}-\mu_i)’\begin{matrix}\sum_i^{-1}\end{matrix}(\text{x}-\mu_i)\right}<br>$$<br>with mean vextor $\mu_i$ and covariance matrix $\sum_i$, the weight satisfy the constraint that $\sum_{i=1}^M\omega_i=1$.</p>
-<p>in the formular, the parameters can be denoted by<br>$$<br>\lambda={ \omega_i,\mu_i,\begin{matrix}\sum_i\end{matrix}}\qquad i=1,2,…,M<br>$$<br>then,</p>
-<p><img src="/GMM/a1.png" alt="pic1"></p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><script type="math/tex; mode=display">
+p(\text{x}|\lambda)=\sum_{i=1}^M\omega_ig(\text{x}|\mu_i,\begin{matrix}\sum_i\end{matrix})</script><p>where</p>
+<script type="math/tex; mode=display">
+g(\text{x}|\mu_i,\begin{matrix}\sum_i\end{matrix})=\frac{1}{(2\pi)^{D/2}|\sum_i|^{1/2}}\text{exp} \{ -\frac{1}{2}(\text{x}-\mu_i)'\begin{matrix}\sum_i^{-1}\end{matrix}(\text{x}-\mu_i)\}</script><p>with mean vextor $\mu_i$ and covariance matrix $\sum_i$, the weight satisfy the constraint that $\sum_{i=1}^M\omega_i=1$.</p>
+<p>in the formular, the parameters can be denoted by</p>
+<script type="math/tex; mode=display">
+\lambda=\{ \omega_i,\mu_i,\begin{matrix}\sum_i\end{matrix}\}\qquad i=1,2,...,M</script><p>then,</p>
+<p><img src="a1.png" alt="pic1"></p>
 <blockquote>
 <p>Fig. 1. Comparison of distribution modeling. (a) histogram of a single cepstral coefficient from a 25 second utterance by a male speaker (b)maximum likelihood uni-modal Gaussian model (c) GMM and its 10 underlying component densities (d) histogram of the data assigned to the VQ centroid locations of a 10 element codebook.</p>
 </blockquote>
