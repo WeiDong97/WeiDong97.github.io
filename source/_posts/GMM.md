@@ -8,6 +8,8 @@ date: 2020-11-20 13:33:20
 
 # GMM-Gaussian Mixture Model
 
+<!--more-->
+
 ## Definition
 
 参数概率密度函数，用gaussian component densities的加权和表示。

@@ -9,6 +9,8 @@ tags: [移动目标检测]
 
 # 20201117-Needles in a Haystack: Tracking City-Scale Moving Vehicles From Continuously Moving Satellite
 
+<!--more-->
+
 ## 卫星视频移动目标检测问题
 
 1. 目标移动并且很小，通常只有几个像素，并且没有纹理和颜色，最好的特征就是运动特征。

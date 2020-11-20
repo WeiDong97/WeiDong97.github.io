@@ -180,7 +180,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-11-20 15:44:50 / 修改时间：15:54:31" itemprop="dateCreated datePublished" datetime="2020-11-20T15:44:50+08:00">2020-11-20</time>
+              <time title="创建时间：2020-11-20 15:44:50 / 修改时间：16:17:32" itemprop="dateCreated datePublished" datetime="2020-11-20T15:44:50+08:00">2020-11-20</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -217,84 +217,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="20201117-Needles-in-a-Haystack-Tracking-City-Scale-Moving-Vehicles-From-Continuously-Moving-Satellite"><a href="#20201117-Needles-in-a-Haystack-Tracking-City-Scale-Moving-Vehicles-From-Continuously-Moving-Satellite" class="headerlink" title="20201117-Needles in a Haystack: Tracking City-Scale Moving Vehicles From Continuously Moving Satellite"></a>20201117-Needles in a Haystack: Tracking City-Scale Moving Vehicles From Continuously Moving Satellite</h1><h2 id="卫星视频移动目标检测问题"><a href="#卫星视频移动目标检测问题" class="headerlink" title="卫星视频移动目标检测问题"></a>卫星视频移动目标检测问题</h2><ol>
-<li><p>目标移动并且很小，通常只有几个像素，并且没有纹理和颜色，最好的特征就是运动特征。</p>
-</li>
-<li><p>卫星视频的帧覆盖了一个巨大范围并且提供一个动态场景。</p>
-<p>文章根据镜头与物体的距离将视频分为near-field, medium-field, far-field surveillance videos, and extremely far-field satellite videos[2] [3].卫星视频的处理更为困难，不仅是广阔视野还因为非常复杂的背景。</p>
-</li>
-<li><p><strong>背景称亚像素级不均匀运动</strong></p>
-<p>光流场如[4],[5]所示，背景的运动导致静止像素也在动，从而为运动目标检测造成妨碍。</p>
-</li>
-</ol>
-<h2 id="方案概述"><a href="#方案概述" class="headerlink" title="方案概述"></a>方案概述</h2><p>将每帧分解成两部分，原始图像和随机2D噪声信号图。采用随机分布拟合噪声，有利于分辨潜在的运动目标。</p>
-<p>a local tactic is applied to address intra-variants within a frame and discern inter-variants between frames</p>
-<p>然后是一种基于多形态线索的区域生长方法和判别方法可以消除其他噪声。</p>
-<p>然后使用KF追踪车辆</p>
-<h2 id="related-work"><a href="#related-work" class="headerlink" title="related work"></a>related work</h2><p>B.移动目标检测和追踪</p>
-<p>GMM[14-16], Vibe[17], Hierarchical convolutional features(HCF)[18,19]</p>
-<p>GMM利用权重呼和的高斯分布来建模像素值随时间的变化，但是像素值变化可能不是服从于高斯分布，因此大多数情况下我们不能用一个确定的参数模型表示像素值变化</p>
-<p>Vibe将不同时间不长的像素值认为是一个空间的样本，为了表示这些像素。</p>
-<h2 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h2><h3 id="Key-concept："><a href="#Key-concept：" class="headerlink" title="Key concept："></a>Key concept：</h3><p>==<em>detector</em>==: 集成了local tactic and noise modeling algorithm。</p>
-<p>==<em>candidates</em>==：detector的输出，包括了true和some noise</p>
-<p>==<em>discrimination</em>==：判别true和noise的程序，包括the proposed region growing and multi-morphological-cue based discrimination algorithms.</p>
-<p>==<em>Hypotheses</em>==: discrimination 的输出，由true和few noise组成</p>
-<p>==<em>state</em>==：a vector that includes <strong>position, velocity, and acceleration</strong> of a vehicle in a time step</p>
-<p>==<em>track</em>==: a sequence of states of a vehicle in the temporal domain. 被一个独特ID标记并安排给一个KF</p>
-<p>==<em>association</em>==：匹配算法，meets the minimum cost</p>
-<p>==<em>prediction</em>==： KF推断出的当前位置</p>
-<p><img src="/Needles%20in%20a%20Haystack%20Tracking%20City-Scale%20Moving%20Vehicles%20From%20Continuously%20Moving%20Satellite/image-20201117104616406.png" alt="image-20201117104616406"></p>
-<h3 id="Motion-Based-Detection-Using-Local-Noise-Modeling"><a href="#Motion-Based-Detection-Using-Local-Noise-Modeling" class="headerlink" title="Motion-Based Detection Using Local Noise Modeling"></a>Motion-Based Detection Using Local Noise Modeling</h3><p>二值化的阈值不能固定，需要自适应</p>
-<ol>
-<li><p>local tactic： 解决帧内的剧烈变化，在帧中沿垂直和水平方向实现2D光栅化，每个块设为30*30（emparically)</p>
-</li>
-<li><p>Detecting method:</p>
-</li>
-</ol>
-<p><em>Step1</em>: 差分</p>
-<p><em>Step2</em>: 估计噪声分布</p>
-<p><em>Step3</em>：二值化</p>
-<p><em>Step4</em>：逻辑与</p>
-<p><img src="/Needles%20in%20a%20Haystack%20Tracking%20City-Scale%20Moving%20Vehicles%20From%20Continuously%20Moving%20Satellite/image-20201117105120909.png" alt="image-20201117105120909"></p>
-<p>3)具体解释</p>
-<p><strong><em>Step1:差分</em></strong></p>
-<p>将帧看做2d信号，由原始光信号和附加的随机噪声组成<br>$$<br>G_i(x,y)=g_i(x,y)+n_i(x,y)<br>$$</p>
-<blockquote>
-<p>RGB-&gt;Grey</p>
-</blockquote>
-<p>then,<br>$$<br>D_{i,i+k}(x,y)=|G_i(x,y)-G_{i+k}(x,y)|<br>=|n_i(x,y)-n_{i+k}(x,y)|<br>$$<br><strong><em>Step2:估计噪声分布</em></strong></p>
-<p>根据直方图，heavy tail对应outlier，是target；拟合方法采用指数分布<br>$$<br>c_E(x;\lambda)=\begin{cases}<br>1-exp(-\lambda x), &amp;\ x&gt;0 \<br>0,&amp;x \leq \mbox{0}\end{cases}<br>$$<br><strong><em>Step3:<strong>**</strong>二值化</em></strong></p>
-<p>根据[7]，引入一个预定义的概率值$p_{fa}$来推导阈值<br>$$<br>th=c_E^{-1}(1-p_{fa};\lambda)<br>$$<br>-1代表逆函数，这里设置参数$p_{fa}$为0.05，大于阈值th被认为是outlier</p>
-<p><strong><em>Step4：逻辑与</em></strong></p>
-<p>In addition to eliminating ambiguities, logical AND<br>also reduces the existing noises due to their random appearing.</p>
-<h3 id="Region-Growing-and-Multi-Morphological-Cue-Based-Discrimination"><a href="#Region-Growing-and-Multi-Morphological-Cue-Based-Discrimination" class="headerlink" title="Region Growing and Multi-Morphological-Cue Based Discrimination"></a>Region Growing and Multi-Morphological-Cue Based Discrimination</h3><p>仍然可能有噪声，包括不规则噪声和规则噪声，不规则噪声是由剧烈光照变化或轻微偏差引起的，随机出现在一些连续帧中，<strong>可以被KF逐步消除</strong></p>
-<p>另一种是规则噪声，背景均匀移动，他是与移动目标混淆的重要一点。</p>
-<p>用一个术语<em>pseudo motion</em>代称</p>
-<p>算法：</p>
-<p>1.车辆是2D时域中的一个奇异点，相反的，这些规则噪声的邻域内相似分布，如果<em>candidates</em>可以被链接到相似的邻域像素，那就可以根据形状区分，车辆是矩形，噪声是奇怪形状</p>
-<p>邻域被定义为11*11</p>
-<p>相似度度量使用高斯分布</p>
-<p>被确定连通的像素的阈值应该是<br>$$<br>th_G^-=c_G^-(p_{fa}^-\mu,\sigma)\<br>th_G^+=c_G^{-1}(p_{fa}^+\mu,\sigma)<br>$$<br>两个参数选定为0.005和1-0.005</p>
-<p>2.区域生长后，采用一系列形态学特征来区分车辆目标和噪声。</p>
-<p>这些特征包括（candidate直接叫做候选了）</p>
-<p><em>Area</em>：候选的面积</p>
-<p><em>Extent</em>：候选的像素与候选框像素比</p>
-<p><em>Major Axis Length</em>：如果一个椭圆与候选连接区域的标准化第二中心相同，那么椭圆半长轴定义为主轴长</p>
-<p><em>Eccentricity</em>：上述椭圆的离心率</p>
-<p>面积和长轴衡量大小，范围和离心率衡量候选与矩形的相似性。</p>
-<p>注意，视频的车当然是刚体</p>
-<h2 id="Metric"><a href="#Metric" class="headerlink" title="Metric"></a>Metric</h2><p><strong><em>Precision</em></strong><br>$$<br>P=\frac{TP}{TP+FP}<br>$$<br>TP：检测出的，并且是目标</p>
-<p>FP：检测出的，不是目标</p>
-<p>FN：没检测出的目标</p>
-<p><strong><em>Recall</em></strong><br>$$<br>R=\frac{TP}{TP+FN}<br>$$<br><strong><em>F1-score</em></strong><br>$$<br>F_1=2\frac{P<em>R}{P+R}<br>$$<br>**</em>Jaccard similarity***<br>$$<br>J=\frac{TP}{TP+FP+FN}<br>$$<br><strong><em>MOTA</em></strong><br>$$<br>MOTA=1-\frac{\sum_i(FN_i+FP_i+IDSW_i)}{\sum_iGT_i}<br>$$<br>IDSW：ID switch</p>
-<p>指标范围从负无穷到1，越大越好</p>
-<p><strong><em>MOTP</em></strong><br>$$<br>MOTP=\frac{\sum_iIoU_i}{\sum_iM_i}<br>$$<br>从0到1</p>
-<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><h3 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h3><h4 id="dataset"><a href="#dataset" class="headerlink" title="dataset"></a>dataset</h4><h4 id="Competitor："><a href="#Competitor：" class="headerlink" title="Competitor："></a>Competitor：</h4><p>GMM、ViBe、HCF，+KF</p>
-<h4 id="GT"><a href="#GT" class="headerlink" title="GT"></a>GT</h4><p>考虑到工作量，标注了随机抽取的三个500*500区域</p>
-<p>每10帧标记一下</p>
-<p>其他帧的情况通过线性插值得到</p>
-<p>使用Ground Truth Labeler App inMATLAB 2018a </p>
-
+          <h1 id="20201117-Needles-in-a-Haystack-Tracking-City-Scale-Moving-Vehicles-From-Continuously-Moving-Satellite"><a href="#20201117-Needles-in-a-Haystack-Tracking-City-Scale-Moving-Vehicles-From-Continuously-Moving-Satellite" class="headerlink" title="20201117-Needles in a Haystack: Tracking City-Scale Moving Vehicles From Continuously Moving Satellite"></a>20201117-Needles in a Haystack: Tracking City-Scale Moving Vehicles From Continuously Moving Satellite</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Needles%20in%20a%20Haystack%20Tracking%20City-Scale%20Moving%20Vehicles%20From%20Continuously%20Moving%20Satellite.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -338,7 +269,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-11-20 13:33:20 / 修改时间：15:04:11" itemprop="dateCreated datePublished" datetime="2020-11-20T13:33:20+08:00">2020-11-20</time>
+              <time title="创建时间：2020-11-20 13:33:20 / 修改时间：16:17:48" itemprop="dateCreated datePublished" datetime="2020-11-20T13:33:20+08:00">2020-11-20</time>
             </span>
 
           
@@ -366,17 +297,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="GMM-Gaussian-Mixture-Model"><a href="#GMM-Gaussian-Mixture-Model" class="headerlink" title="GMM-Gaussian Mixture Model"></a>GMM-Gaussian Mixture Model</h1><h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h2><p>参数概率密度函数，用gaussian component densities的加权和表示。</p>
-<p>GMM参数估计是从训练数据使用迭代期望最大化（EM）算法或最大后验（MAP）估计从一个训练有素的先验模型。</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>$$<br>p(\text{x}|\lambda)=\sum_{i=1}^M\omega_ig(\text{x}|\mu_i,\begin{matrix}\sum_i\end{matrix})<br>$$</p>
-<p>where<br>$$<br>g(\text{x}|\mu_i,\begin{matrix}\sum_i\end{matrix})=\frac{1}{(2\pi)^{D/2}|\begin{matrix}\sum_i\end{matrix}|^{1/2}}\text{exp} { -\frac{1}{2}(\text{x}-\mu_i)’\begin{matrix}\sum_i^{-1}\end{matrix}(\text{x}-\mu_i)}<br>$$<br>with mean vextor $\mu_i$ and covariance matrix $\sum_i$, the weight satisfy the constraint that $\sum_{i=1}^M\omega_i=1$.</p>
-<p>in the formular, the parameters can be denoted by<br>$$<br>\lambda={ \omega_i,\mu_i,\begin{matrix}\sum_i\end{matrix}}\qquad i=1,2,…,M<br>$$<br>then, </p>
-<img src="/GMM/a1.png" class="" title="This is a picture">
-
-<blockquote>
-<p>Fig. 1. Comparison of distribution modeling. (a) histogram of a single cepstral coefficient from a 25 second utterance by a male speaker (b)maximum likelihood uni-modal Gaussian model (c) GMM and its 10 underlying component densities (d) histogram of the data assigned to the VQ centroid locations of a 10 element codebook.</p>
-</blockquote>
-
+          <h1 id="GMM-Gaussian-Mixture-Model"><a href="#GMM-Gaussian-Mixture-Model" class="headerlink" title="GMM-Gaussian Mixture Model"></a>GMM-Gaussian Mixture Model</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/GMM.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
