@@ -80,7 +80,7 @@ top: true
 favicon: ""
 
 #你的头像url
-avatar: ""
+avatar: "1.jpg"
 
 #是否开启分享，如果不需要建议不要开启
 share_jia: false
