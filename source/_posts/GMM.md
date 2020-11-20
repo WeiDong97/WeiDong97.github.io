@@ -22,7 +22,7 @@ $$
 
 where
 $$
-g(\text{x}|\mu_i,\begin{matrix}\sum_i\end{matrix})=\frac{1}{(2\pi)^{D/2}|\begin{matrix}\sum_i\end{matrix}|^{1/2}}\text{exp}\left\{-\frac{1}{2}(\text{x}-\mu_i)'\begin{matrix}\sum_i^{-1}\end{matrix}(\text{x}-\mu_i)\right\}
+g(\text{x}|\mu_i,\begin{matrix}\sum_i\end{matrix})=\frac{1}{(2\pi)^{D/2}|\begin{matrix}\sum_i\end{matrix}|^{1/2}}\text{exp}\left\{-\frac{1}{2}(\text{x}-\mu_i)'\begin{matrix}\sum_i^{-1}\end{matrix}(\text{x}-\mu_i)\right\\}
 $$
 with mean vextor $\mu_i$ and covariance matrix $\sum_i$, the weight satisfy the constraint that $\sum_{i=1}^M\omega_i=1$.
 
