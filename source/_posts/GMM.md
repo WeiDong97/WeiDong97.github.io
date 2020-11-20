@@ -30,7 +30,7 @@ in the formular, the parameters can be denoted by
 $$
 \lambda=\{ \omega_i,\mu_i,\begin{matrix}\sum_i\end{matrix}\}\qquad i=1,2,...,M
 $$
-![pic1](a1.png)
+![pic1](\a1.png)
 
 > Fig. 1. Comparison of distribution modeling. (a) histogram of a single cepstral coefficient from a 25 second utterance by a male speaker (b)maximum likelihood uni-modal Gaussian model (c) GMM and its 10 underlying component densities (d) histogram of the data assigned to the VQ centroid locations of a 10 element codebook.
 
