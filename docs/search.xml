@@ -91,7 +91,9 @@
 <h2 id="Metric"><a href="#Metric" class="headerlink" title="Metric"></a>Metric</h2><p><strong><em>Precision</em></strong><br>$$<br>P=\frac{TP}{TP+FP}<br>$$<br>TP：检测出的，并且是目标</p>
 <p>FP：检测出的，不是目标</p>
 <p>FN：没检测出的目标</p>
-<p><strong><em>Recall</em></strong><br>$$<br>R=\frac{TP}{TP+FN}<br>$$<br><strong><em>F1-score</em></strong><br>$$<br>F_1=2\frac{P<em>R}{P+R}<br>$$<br>**</em>Jaccard similarity***<br>$$<br>J=\frac{TP}{TP+FP+FN}<br>$$<br><strong><em>MOTA</em></strong><br>$$<br>MOTA=1-\frac{\sum_i(FN_i+FP_i+IDSW_i)}{\sum_iGT_i}<br>$$<br>IDSW：ID switch</p>
+<p><strong><em>Recall</em></strong><br>$$<br>R=\frac{TP}{TP+FN}<br>$$<br><strong><em>F1-score</em></strong><br>$$<br>F_1=2\frac{P*R}{P+R}<br>$$</p>
+<hr>
+<p> <strong><em>Jaccard similarity</em></strong><br>$$<br>J=\frac{TP}{TP+FP+FN}<br>$$<br><strong><em>MOTA</em></strong><br>$$<br>MOTA=1-\frac{\sum_i(FN_i+FP_i+IDSW_i)}{\sum_iGT_i}<br>$$<br>IDSW：ID switch</p>
 <p>指标范围从负无穷到1，越大越好</p>
 <p><strong><em>MOTP</em></strong><br>$$<br>MOTP=\frac{\sum_iIoU_i}{\sum_iM_i}<br>$$<br>从0到1</p>
 <h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><h3 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h3><h4 id="dataset"><a href="#dataset" class="headerlink" title="dataset"></a>dataset</h4><h4 id="Competitor："><a href="#Competitor：" class="headerlink" title="Competitor："></a>Competitor：</h4><p>GMM、ViBe、HCF，+KF</p>

@@ -181,7 +181,9 @@ $$
 $$
 F_1=2\frac{P*R}{P+R}
 $$
-***Jaccard similarity***
+****
+
+ ***Jaccard similarity***
 $$
 J=\frac{TP}{TP+FP+FN}
 $$
