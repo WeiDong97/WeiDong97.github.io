@@ -32,8 +32,7 @@ $$
 $$
 then, 
 
-![pic](a1.png)
+{% asset_img a1.png This is a picture %}
 
 > Fig. 1. Comparison of distribution modeling. (a) histogram of a single cepstral coefficient from a 25 second utterance by a male speaker (b)maximum likelihood uni-modal Gaussian model (c) GMM and its 10 underlying component densities (d) histogram of the data assigned to the VQ centroid locations of a 10 element codebook.
 
-{% asset_img a1.png This is a picture %}
