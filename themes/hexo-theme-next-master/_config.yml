@@ -870,7 +870,7 @@ canvas_ribbon:
 # Canvas-nest
 # Dependencies: https://github.com/theme-next/theme-next-canvas-nest
 canvas_nest:
-  enable: true
+  enable: false
   onmobile: true # 是否在手机上显示
   color: "255,51,51" # RGB颜色设置
   opacity: 0.5 # 线条透明度
