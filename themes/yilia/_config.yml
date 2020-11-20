@@ -77,10 +77,10 @@ top: true
 # Miscellaneous 百度统计和谷歌统计，站点标识
 #baidu_analytics: ''
 #google_analytics: ''
-favicon: ""
+favicon: "/themes/yilia/source/"
 
 #你的头像url
-avatar: "/img/1.jpg"
+avatar: "/assets/img/1.jpg"
 
 #是否开启分享，如果不需要建议不要开启
 share_jia: false
