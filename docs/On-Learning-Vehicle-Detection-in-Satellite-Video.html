@@ -22,28 +22,35 @@
     var CONFIG = {"hostname":"weidong97.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Anton home">
-<meta property="og:url" content="https://weidong97.github.io/index.html">
+  <meta name="description" content="通过一个简单网络提取特征并转化为热力图，然后进行阈值分割和最终预测。   Introduction航空和卫星图像的分辨率和数据量都很大，例如广域运动图像WAMI提供每帧400MP和每秒三帧。卫星图像30FPS的4K RGB图像，并且可能覆盖几十平方公里，每张图中有上千个小物体并且上百个种类。根据GSD，卫星图像中的目标可能只有10px量级。 目标检测变得非常模糊，对噪声和干扰非常敏感，搜索空间急剧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="On Learning Vehicle Detection in Satellite Video">
+<meta property="og:url" content="https://weidong97.github.io/On-Learning-Vehicle-Detection-in-Satellite-Video.html">
 <meta property="og:site_name" content="Anton home">
+<meta property="og:description" content="通过一个简单网络提取特征并转化为热力图，然后进行阈值分割和最终预测。   Introduction航空和卫星图像的分辨率和数据量都很大，例如广域运动图像WAMI提供每帧400MP和每秒三帧。卫星图像30FPS的4K RGB图像，并且可能覆盖几十平方公里，每张图中有上千个小物体并且上百个种类。根据GSD，卫星图像中的目标可能只有10px量级。 目标检测变得非常模糊，对噪声和干扰非常敏感，搜索空间急剧">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://weidong97.github.io/On-Learning-Vehicle-Detection-in-Satellite-Video/image-20201121162541315.png">
+<meta property="article:published_time" content="2020-11-21T07:07:47.000Z">
+<meta property="article:modified_time" content="2020-11-21T09:17:15.576Z">
 <meta property="article:author" content="Wei Dong">
+<meta property="article:tag" content="移动目标检测">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://weidong97.github.io/On-Learning-Vehicle-Detection-in-Satellite-Video/image-20201121162541315.png">
 
-<link rel="canonical" href="https://weidong97.github.io/">
+<link rel="canonical" href="https://weidong97.github.io/On-Learning-Vehicle-Detection-in-Satellite-Video.html">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Anton home</title>
+  <title>On Learning Vehicle Detection in Satellite Video | Anton home</title>
   
 
 
@@ -186,9 +193,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -204,10 +212,9 @@
       <meta itemprop="name" content="Anton home">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/On-Learning-Vehicle-Detection-in-Satellite-Video.html" class="post-title-link" itemprop="url">On Learning Vehicle Detection in Satellite Video</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          On Learning Vehicle Detection in Satellite Video
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -258,7 +265,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>通过一个简单网络提取特征并转化为热力图，然后进行阈值分割和最终预测。</p>
+        <p>通过一个简单网络提取特征并转化为热力图，然后进行阈值分割和最终预测。</p>
 <!---more--->
 
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>航空和卫星图像的分辨率和数据量都很大，例如广域运动图像WAMI提供每帧400MP和每秒三帧。卫星图像30FPS的4K RGB图像，并且可能覆盖几十平方公里，每张图中有上千个小物体并且上百个种类。根据GSD，卫星图像中的目标可能只有10px量级。</p>
@@ -337,196 +344,41 @@
 <p>结果还表明，学习检测移动目标通过线性运动的斜率比学习视觉外观的时空变化简单。预训练对泛化非常重要。</p>
 <p>最后，关于帧率的实验表明高帧率对结果没有大影响，因为需要学习的特征很简单。</p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://weidong97.github.io/Needles%20in%20a%20Haystack%20Tracking%20City-Scale%20Moving%20Vehicles%20From%20Continuously%20Moving%20Satellite.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/1.jpg">
-      <meta itemprop="name" content="Wei Dong">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Anton home">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
           
-            <a href="/Needles%20in%20a%20Haystack%20Tracking%20City-Scale%20Moving%20Vehicles%20From%20Continuously%20Moving%20Satellite.html" class="post-title-link" itemprop="url">Needles in a Haystack Tracking City-Scale Moving Vehicles From Continuously Moving Satellite</a>
-        </h2>
+          <div class="post-tags">
+              <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" rel="tag"><i class="fa fa-tag"></i> 移动目标检测</a>
+          </div>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-11-20 15:44:50 / 修改时间：20:50:49" itemprop="dateCreated datePublished" datetime="2020-11-20T15:44:50+08:00">2020-11-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/Needles%20in%20a%20Haystack%20Tracking%20City-Scale%20Moving%20Vehicles%20From%20Continuously%20Moving%20Satellite.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/Needles%20in%20a%20Haystack%20Tracking%20City-Scale%20Moving%20Vehicles%20From%20Continuously%20Moving%20Satellite.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="20201117-Needles-in-a-Haystack-Tracking-City-Scale-Moving-Vehicles-From-Continuously-Moving-Satellite"><a href="#20201117-Needles-in-a-Haystack-Tracking-City-Scale-Moving-Vehicles-From-Continuously-Moving-Satellite" class="headerlink" title="20201117-Needles in a Haystack: Tracking City-Scale Moving Vehicles From Continuously Moving Satellite"></a>20201117-Needles in a Haystack: Tracking City-Scale Moving Vehicles From Continuously Moving Satellite</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Needles%20in%20a%20Haystack%20Tracking%20City-Scale%20Moving%20Vehicles%20From%20Continuously%20Moving%20Satellite.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://weidong97.github.io/GMM.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/1.jpg">
-      <meta itemprop="name" content="Wei Dong">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Anton home">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/GMM.html" class="post-title-link" itemprop="url">GMM</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-11-20 13:33:20 / 修改时间：16:17:48" itemprop="dateCreated datePublished" datetime="2020-11-20T13:33:20+08:00">2020-11-20</time>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/GMM.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/GMM.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="GMM-Gaussian-Mixture-Model"><a href="#GMM-Gaussian-Mixture-Model" class="headerlink" title="GMM-Gaussian Mixture Model"></a>GMM-Gaussian Mixture Model</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/GMM.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Needles%20in%20a%20Haystack%20Tracking%20City-Scale%20Moving%20Vehicles%20From%20Continuously%20Moving%20Satellite.html" rel="prev" title="Needles in a Haystack Tracking City-Scale Moving Vehicles From Continuously Moving Satellite">
+      <i class="fa fa-chevron-left"></i> Needles in a Haystack Tracking City-Scale Moving Vehicles From Continuously Moving Satellite
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -573,6 +425,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Methodology"><span class="nav-number">3.</span> <span class="nav-text">Methodology</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-FoveaNet-and-thresholding"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 FoveaNet and thresholding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 迁移学习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experimental-Evaluation-and-Results"><span class="nav-number">4.</span> <span class="nav-text">Experimental Evaluation and Results</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Experiment-1-Baseline-evaluation"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Experiment 1: Baseline evaluation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Experiment-2-%E8%B0%83%E6%95%B4GSD"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Experiment 2: 调整GSD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-Experiment-3-Satellite-video"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 Experiment 3: Satellite video</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

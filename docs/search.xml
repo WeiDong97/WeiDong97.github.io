@@ -109,4 +109,94 @@
         <tag>移动目标检测</tag>
       </tags>
   </entry>
+  <entry>
+    <title>On Learning Vehicle Detection in Satellite Video</title>
+    <url>/On-Learning-Vehicle-Detection-in-Satellite-Video.html</url>
+    <content><![CDATA[<p>通过一个简单网络提取特征并转化为热力图，然后进行阈值分割和最终预测。</p>
+<!---more--->
+
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>航空和卫星图像的分辨率和数据量都很大，例如广域运动图像WAMI提供每帧400MP和每秒三帧。卫星图像30FPS的4K RGB图像，并且可能覆盖几十平方公里，每张图中有上千个小物体并且上百个种类。根据GSD，卫星图像中的目标可能只有10px量级。</p>
+<p>目标检测变得非常模糊，对噪声和干扰非常敏感，搜索空间急剧增加，变得非常稀疏。人甚至都看不出来物体，这也造成数据标注的大问题。因此，目前研究主要依靠背景差分和帧差法。 [16, 28, 32, 18, 4, 3]</p>
+<p>深度学习的方法都是用不同场景的狭窄数据集进行测试的，这也使得结果有效性受到质疑。</p>
+<p>因此本文研究了卫星图像中的车辆检测问题，SkySat-1卫星提供120s，30Hz，2K全色视频，面积$1.1km^2$，GSD80cm。Jilin-1提供4MP像素的彩色视频。</p>
+<p>这是第一次使用神经网络和深度学习来直接回归卫星视频中车辆位置。受最近在WAMI上工作的启发，文章提出一种开发时间一致性的深度学习方法。为了克服数据问题，将WAMI的工作迁移学习到卫星视频中。</p>
+<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><p>在滑窗顶部使用分类器是一种可能的路径。但是还没有，已有的航空图像方法拿来用都不好。</p>
+<p>另一个想法是对车辆和背景进行像素级分类（语义分割）[23]将Inception和Resnet结合给出一个热力图，然后选取固定车辆大小和非极大值抑制得到结果。</p>
+<p>如何使用时空信息是一个重要问题，The standard is to use background subtraction (BGS) [35, 16, 28, 32, 1] and frame differencing(FD)[18,4,3]。另外，[2]提出将YOLO和时空滤波器结合，[22]提出将KLT跟踪用在视频上，with a SegNet on overlapping multispectral data。[35]使用CIFAR训练的resnet分类器去处理混合高斯前景模型的结果。这里的标准是应用连接成分分析[16，28]，显著性分析，分割[32，18]，分布拟合[4，3]，然后是形态学。</p>
+<p>还有一个大问题是稀疏性，如在WAMI中，通过将大图像进行聚类再去做。</p>
+<p>最近，[10，9，26，12]也考虑了飞机、火车和车辆的跟踪，或者使用光流[10，9]，相关跟踪器（KLT）[26]或相关和卡尔曼滤波器的组合[12]。</p>
+<h2 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h2><p>受[17]启发，他设计了两个神经网络，称为ClusterNet和FoveaNet，检测WAMI中的移动目标。ClusterNet提出region of object(ROOBI)，基于areas of interest(AOI)，作为FoveaNet的输入。文章没有使用ClusterNet，而是直接将AOI裁剪成128*128的ROOBI。</p>
+<h3 id="3-1-FoveaNet-and-thresholding"><a href="#3-1-FoveaNet-and-thresholding" class="headerlink" title="3.1 FoveaNet and thresholding"></a>3.1 FoveaNet and thresholding</h3><p><img src="/On-Learning-Vehicle-Detection-in-Satellite-Video/image-20201121162541315.png" alt="image-20201121162541315"></p>
+<p>这个网络由全卷积层构成，每层滤波器的数量分别是32,32,32,256,512,256,256 and 1。</p>
+<p>第一层后接一个2*2池化层，第6,7层加了0.5dropout，最后一层每个神经元在像素级对移动车辆可能性投票。</p>
+<p>输入网络的是一个$N\times N\times c$的帧栈，N是ROOBI size，c是连续帧。CNN应该学到检测中心帧的目标位置。文章举例c=5。</p>
+<p>地面真实情况基于热图H，该热图是通过叠加高斯分布创建的，其中每个分布的中心是图像中车辆的像素位置，其中n是像素位置提供的下采样地面真实坐标，σ是高斯模糊的方差。在训练过程中，网络学习最小化网络输出和生成的地面真实热图之间的欧几里德距离</p>
+<p>第二步处理预测的热图以确定物体的位置。为此，通过OTSU阈值化将热图转换为分割图[17]。如果分割区域大于阈值α，则区域中心被定义为对象位置。</p>
+<h3 id="3-2-迁移学习"><a href="#3-2-迁移学习" class="headerlink" title="3.2 迁移学习"></a>3.2 迁移学习</h3><p>the WPAFB images have about four times higher GSD than the LasVegas video，为此，我们根据WPAFB数据集训练CNN。之后我们对CNN卫星视频数据进行微调。</p>
+<h2 id="Experimental-Evaluation-and-Results"><a href="#Experimental-Evaluation-and-Results" class="headerlink" title="Experimental Evaluation and Results"></a>Experimental Evaluation and Results</h2><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>batch size</td>
+<td>32</td>
+</tr>
+<tr>
+<td>lr</td>
+<td>1e-5</td>
+</tr>
+</tbody></table>
+<p>数据准备包括帧注册和相机运动补偿。</p>
+<p>三组实验，第一组复现17的结果，第二组降低WPAFB的GSD，这样就和卫星图像相似，第三组，微调并评估结果。</p>
+<p>标准：检测结果在gt的一定距离$\theta$内就认为TP，如果范围内有多个结果，最近的当做TP，剩下的如果没有被确定为其他TP就是FP，没在范围内的自然也是FP，范围内一个检测结果也没有的叫做FN。结果将按照P,R,F1比较。</p>
+<p>选取与17一样的AOI，编号为34,40,41。AOI 40在一个主要交叉口处有大量密集交通，而AOI 41主要由道路上的单车组成。AOI34是两种交通模式的组合。训练就选其中两个训练另一个。</p>
+<p>如果目标在5帧内移动$\omega$像素，记为移动目标。</p>
+<h3 id="4-1-Experiment-1-Baseline-evaluation"><a href="#4-1-Experiment-1-Baseline-evaluation" class="headerlink" title="4.1 Experiment 1: Baseline evaluation"></a>4.1 Experiment 1: Baseline evaluation</h3><p>复现17结果。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>N(ROOBI edge length)</td>
+<td>100px</td>
+</tr>
+<tr>
+<td>$\sigma$(variance of Gaussian blur)</td>
+<td>2</td>
+</tr>
+<tr>
+<td>$\theta$(evaluation threshold)</td>
+<td>40px</td>
+</tr>
+<tr>
+<td>$\omega$(threshold for removing stationary cars)</td>
+<td>15px</td>
+</tr>
+<tr>
+<td>$\alpha$(threshold to disregard small segments)</td>
+<td>15px</td>
+</tr>
+</tbody></table>
+<h3 id="4-2-Experiment-2-调整GSD"><a href="#4-2-Experiment-2-调整GSD" class="headerlink" title="4.2 Experiment 2: 调整GSD"></a>4.2 Experiment 2: 调整GSD</h3><p>在第二个实验中，我们用0.4和0.2的比例因子（SF）来降低图像，结果分别是原始图像分辨率的40%和20%。我们选择的SF为0.2，因为这个因子将WPAFB数据集中的典型车辆对象大小从18×9px减小到3.6×1.8px，这与卫星视频中的车辆大小类似。实验设置了以下参数：SF=0.4，N=100px，σ=2，θ=16px，ω=6px，α=15px，SF=0.2，N=100px，σ=1，θ=8px，ω=3px，α=3.5px</p>
+<p>结果表明，随着GSD变大，效果显著变差，但是c变大会有效提高分数。</p>
+<p>另外，结果有严重的黏连问题，文章没有很好的处理，只是妥协性的降低了$\sigma$。</p>
+<h3 id="4-3-Experiment-3-Satellite-video"><a href="#4-3-Experiment-3-Satellite-video" class="headerlink" title="4.3 Experiment 3: Satellite video"></a>4.3 Experiment 3: Satellite video</h3><p>对于训练和评估，我们设置θ=8px，α=4px，σ=1，c=5和N=128px。另外，我们设置SF=0.2和ω=3px来训练WPAFB数据集。本实验观察到用leaky ReLUs代替ELUs，提高了训练效率。</p>
+<p>[17]关于空间上下文信息需要在第一层中使用大过滤器的观点似乎是误导性的，因为上下文是由网络的接受场引入深层网络的高层的。我们认为，滤波器的大小取决于车辆在连续帧中的像素距离，这样时空网络就可以利用时间信息，这是我们实验所证实的</p>
+<p>结果还表明，学习检测移动目标通过线性运动的斜率比学习视觉外观的时空变化简单。预训练对泛化非常重要。</p>
+<p>最后，关于帧率的实验表明高帧率对结果没有大影响，因为需要学习的特征很简单。</p>
+]]></content>
+      <categories>
+        <category>论文阅读</category>
+        <category>深度学习方法</category>
+      </categories>
+      <tags>
+        <tag>移动目标检测</tag>
+      </tags>
+  </entry>
 </search>
