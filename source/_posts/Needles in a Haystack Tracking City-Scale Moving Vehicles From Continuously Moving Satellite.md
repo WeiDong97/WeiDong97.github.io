@@ -4,10 +4,13 @@ title: Needles in a Haystack Tracking City-Scale Moving Vehicles From Continuous
 date: 2020-11-20 15:44:50
 mathjax: true
 categories: [论文阅读]
-tags: [移动目标检测]
+tags: 
+- [移动目标检测]
+- [传统方法]
+- [背景差分法]
 ---
 
-# 20201117-Needles in a Haystack: Tracking City-Scale Moving Vehicles From Continuously Moving Satellite
+将差分结果认定为目标+噪声，形态学去掉规则噪声。
 
 <!--more-->
 
@@ -117,8 +120,7 @@ $$
 
 ***Step4：逻辑与***
 
-In addition to eliminating ambiguities, logical AND
-also reduces the existing noises due to their random appearing.
+In addition to eliminating ambiguities, logical AND also reduces the existing noises due to their random appearing.
 
 ### Region Growing and Multi-Morphological-Cue Based Discrimination
 

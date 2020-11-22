@@ -2,11 +2,15 @@
 title: GMM
 mathjax: true
 date: 2020-11-20 13:33:20
+categories:
+- [传统方法]
+- [理论学习]
+tags:
+- [GMM]
+- [传统方法]
 ---
 
-
-
-# GMM-Gaussian Mixture Model
+高斯混合模型学习
 
 <!--more-->
 

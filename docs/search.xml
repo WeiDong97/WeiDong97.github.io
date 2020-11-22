@@ -3,7 +3,8 @@
   <entry>
     <title>GMM</title>
     <url>/GMM.html</url>
-    <content><![CDATA[<h1 id="GMM-Gaussian-Mixture-Model"><a href="#GMM-Gaussian-Mixture-Model" class="headerlink" title="GMM-Gaussian Mixture Model"></a>GMM-Gaussian Mixture Model</h1><a id="more"></a>
+    <content><![CDATA[<p>高斯混合模型学习</p>
+<a id="more"></a>
 
 <h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h2><p>参数概率密度函数，用gaussian component densities的加权和表示。</p>
 <p>GMM参数估计是从训练数据使用迭代期望最大化（EM）算法或最大后验（MAP）估计从一个训练有素的先验模型。</p>
@@ -16,11 +17,20 @@
 <p>Fig. 1. Comparison of distribution modeling. (a) histogram of a single cepstral coefficient from a 25 second utterance by a male speaker (b)maximum likelihood uni-modal Gaussian model (c) GMM and its 10 underlying component densities (d) histogram of the data assigned to the VQ centroid locations of a 10 element codebook.</p>
 </blockquote>
 ]]></content>
+      <categories>
+        <category>传统方法</category>
+        <category>理论学习</category>
+      </categories>
+      <tags>
+        <tag>传统方法</tag>
+        <tag>GMM</tag>
+      </tags>
   </entry>
   <entry>
     <title>Needles in a Haystack Tracking City-Scale Moving Vehicles From Continuously Moving Satellite</title>
     <url>/Needles%20in%20a%20Haystack%20Tracking%20City-Scale%20Moving%20Vehicles%20From%20Continuously%20Moving%20Satellite.html</url>
-    <content><![CDATA[<h1 id="20201117-Needles-in-a-Haystack-Tracking-City-Scale-Moving-Vehicles-From-Continuously-Moving-Satellite"><a href="#20201117-Needles-in-a-Haystack-Tracking-City-Scale-Moving-Vehicles-From-Continuously-Moving-Satellite" class="headerlink" title="20201117-Needles in a Haystack: Tracking City-Scale Moving Vehicles From Continuously Moving Satellite"></a>20201117-Needles in a Haystack: Tracking City-Scale Moving Vehicles From Continuously Moving Satellite</h1><a id="more"></a>
+    <content><![CDATA[<p>将差分结果认定为目标+噪声，形态学去掉规则噪声。</p>
+<a id="more"></a>
 
 <h2 id="卫星视频移动目标检测问题"><a href="#卫星视频移动目标检测问题" class="headerlink" title="卫星视频移动目标检测问题"></a>卫星视频移动目标检测问题</h2><ol>
 <li><p>目标移动并且很小，通常只有几个像素，并且没有纹理和颜色，最好的特征就是运动特征。</p>
@@ -71,7 +81,7 @@
 <p>根据直方图，heavy tail对应outlier，是target；拟合方法采用指数分布<br>$$<br>c_E(x;\lambda)=\begin{cases}<br>1-exp(-\lambda x), &amp;\ x&gt;0 \<br>0,&amp;x \leq \mbox{0}\end{cases}<br>$$<br><strong><em>Step3:<strong>**</strong>二值化</em></strong></p>
 <p>根据[7]，引入一个预定义的概率值$p_{fa}$来推导阈值<br>$$<br>th=c_E^{-1}(1-p_{fa};\lambda)<br>$$<br>-1代表逆函数，这里设置参数$p_{fa}$为0.05，大于阈值th被认为是outlier</p>
 <p><strong><em>Step4：逻辑与</em></strong></p>
-<p>In addition to eliminating ambiguities, logical AND<br>also reduces the existing noises due to their random appearing.</p>
+<p>In addition to eliminating ambiguities, logical AND also reduces the existing noises due to their random appearing.</p>
 <h3 id="Region-Growing-and-Multi-Morphological-Cue-Based-Discrimination"><a href="#Region-Growing-and-Multi-Morphological-Cue-Based-Discrimination" class="headerlink" title="Region Growing and Multi-Morphological-Cue Based Discrimination"></a>Region Growing and Multi-Morphological-Cue Based Discrimination</h3><p>仍然可能有噪声，包括不规则噪声和规则噪声，不规则噪声是由剧烈光照变化或轻微偏差引起的，随机出现在一些连续帧中，<strong>可以被KF逐步消除</strong></p>
 <p>另一种是规则噪声，背景均匀移动，他是与移动目标混淆的重要一点。</p>
 <p>用一个术语<em>pseudo motion</em>代称</p>
@@ -107,6 +117,8 @@
       </categories>
       <tags>
         <tag>移动目标检测</tag>
+        <tag>传统方法</tag>
+        <tag>背景差分法</tag>
       </tags>
   </entry>
   <entry>
@@ -197,12 +209,15 @@
       </categories>
       <tags>
         <tag>移动目标检测</tag>
+        <tag>深度学习方法</tag>
+        <tag>2020</tag>
       </tags>
   </entry>
   <entry>
     <title>Error Bounded Foreground and Background Modeling for Moving Object Detection in Satellite Videos</title>
     <url>/Error-Bounded-Foreground-and-Background-Modeling-for-Moving-Object-Detection-in-Satellite-Videos.html</url>
-    <content><![CDATA[<a id="more"></a>
+    <content><![CDATA[<p>暂时弃坑，有时间看稀疏学习后再来</p>
+<a id="more"></a>
 
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>考虑到摄像机运动较小，帧之间的背景在时间上是稳定且相似的，因此假设他们位于低维子空间中，该子空间通常使用低秩矩阵分解进行估计。经典的主成分分析PCA方法通过寻求估计背景的秩最小化来生成背景，但对严重破坏的像素十分敏感。运动对象只占视频场景的一小部分，前景是非常稀疏的。鲁棒PCA算法将视频分解为低秩背景和稀疏前景矩阵，主成分追踪和快速低秩近似是为了解决低秩矩阵分解问题产生的。但是对前景的噪声比较大时，效果下降。</p>
 <p>一阶马尔科夫场MRF因此用来限制估计前景的光滑边缘从而降低噪声影响。另一种方法是正则化空间相邻像素组的稀疏性。低秩和结构化稀疏分解LSD框架利用结构化稀疏诱导范数将感兴趣对象的空间先验信息整合到低秩矩阵分解中，当LSD将视频帧分解为低秩前=背景和稀疏前景是，通常有很大的残差，从而使背景的秩上升或者前景出现噪声。</p>
