@@ -22,32 +22,26 @@
     var CONFIG = {"hostname":"weidong97.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="完整介绍了一种背景差分法的流程，对伪运动目标和鬼影判断都有算法。">
+  <meta name="description" content="大概是第一篇，主要方法是对前景运动分割和轨迹积累，构建热力图，并以此提出显著性背景模型。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Motion Detection in Satellite Video">
-<meta property="og:url" content="https://weidong97.github.io/Motion-Detection-in-Satellite-Video.html">
+<meta property="og:title" content="Small Moving Vehicle Detection in a Satellite Video of an Urban Area">
+<meta property="og:url" content="https://weidong97.github.io/Small-Moving-Vehicle-Detection-in-a-Satellite-Video-of-an-Urban-Area.html">
 <meta property="og:site_name" content="Anton home">
-<meta property="og:description" content="完整介绍了一种背景差分法的流程，对伪运动目标和鬼影判断都有算法。">
+<meta property="og:description" content="大概是第一篇，主要方法是对前景运动分割和轨迹积累，构建热力图，并以此提出显著性背景模型。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://weidong97.github.io/Motion-Detection-in-Satellite-Video/image-20201122152805262.png">
-<meta property="og:image" content="https://weidong97.github.io/Motion-Detection-in-Satellite-Video/image-20201122154556809.png">
-<meta property="og:image" content="https://weidong97.github.io/Motion-Detection-in-Satellite-Video/image-20201122155051112.png">
-<meta property="og:image" content="https://weidong97.github.io/Motion-Detection-in-Satellite-Video/image-20201122155418650.png">
-<meta property="og:image" content="https://weidong97.github.io/Motion-Detection-in-Satellite-Video/image-20201122160332829.png">
-<meta property="og:image" content="https://weidong97.github.io/Motion-Detection-in-Satellite-Video/image-20201122164026047.png">
-<meta property="og:image" content="https://weidong97.github.io/Motion-Detection-in-Satellite-Video/image-20201122164318201.png">
-<meta property="article:published_time" content="2020-11-22T06:50:03.000Z">
-<meta property="article:modified_time" content="2020-11-22T08:56:46.319Z">
+<meta property="og:image" content="https://weidong97.github.io/Small-Moving-Vehicle-Detection-in-a-Satellite-Video-of-an-Urban-Area/image-20201123093520970.png">
+<meta property="article:published_time" content="2020-11-23T01:13:59.000Z">
+<meta property="article:modified_time" content="2020-11-23T02:55:31.545Z">
 <meta property="article:author" content="Wei Dong">
 <meta property="article:tag" content="移动目标检测">
 <meta property="article:tag" content="传统方法">
-<meta property="article:tag" content="背景差分法">
-<meta property="article:tag" content="光流法">
-<meta property="article:tag" content="2017">
+<meta property="article:tag" content="ViBe">
+<meta property="article:tag" content="热力图">
+<meta property="article:tag" content="2016">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://weidong97.github.io/Motion-Detection-in-Satellite-Video/image-20201122152805262.png">
+<meta name="twitter:image" content="https://weidong97.github.io/Small-Moving-Vehicle-Detection-in-a-Satellite-Video-of-an-Urban-Area/image-20201123093520970.png">
 
-<link rel="canonical" href="https://weidong97.github.io/Motion-Detection-in-Satellite-Video.html">
+<link rel="canonical" href="https://weidong97.github.io/Small-Moving-Vehicle-Detection-in-a-Satellite-Video-of-an-Urban-Area.html">
 
 
 <script id="page-configurations">
@@ -60,7 +54,7 @@
   };
 </script>
 
-  <title>Motion Detection in Satellite Video | Anton home</title>
+  <title>Small Moving Vehicle Detection in a Satellite Video of an Urban Area | Anton home</title>
   
 
 
@@ -210,7 +204,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://weidong97.github.io/Motion-Detection-in-Satellite-Video.html">
+    <link itemprop="mainEntityOfPage" href="https://weidong97.github.io/Small-Moving-Vehicle-Detection-in-a-Satellite-Video-of-an-Urban-Area.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/1.jpg">
@@ -223,7 +217,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Motion Detection in Satellite Video
+          Small Moving Vehicle Detection in a Satellite Video of an Urban Area
         </h1>
 
         <div class="post-meta">
@@ -234,7 +228,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-11-22 14:50:03 / 修改时间：16:56:46" itemprop="dateCreated datePublished" datetime="2020-11-22T14:50:03+08:00">2020-11-22</time>
+              <time title="创建时间：2020-11-23 09:13:59 / 修改时间：10:55:31" itemprop="dateCreated datePublished" datetime="2020-11-23T09:13:59+08:00">2020-11-23</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -259,8 +253,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/Motion-Detection-in-Satellite-Video.html#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/Motion-Detection-in-Satellite-Video.html" itemprop="commentCount"></span>
+    <a title="valine" href="/Small-Moving-Vehicle-Detection-in-a-Satellite-Video-of-an-Urban-Area.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/Small-Moving-Vehicle-Detection-in-a-Satellite-Video-of-an-Urban-Area.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -275,41 +269,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>完整介绍了一种背景差分法的流程，对伪运动目标和鬼影判断都有算法。</p>
+        <p>大概是第一篇，主要方法是对前景运动分割和轨迹积累，构建热力图，并以此提出显著性背景模型。</p>
 <a id="more"></a>
 
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>背景差分的关键是采用合适的像素采样方法建立背景模型。根据前一帧检测的分割信息进行恰当的模型更新，以适应背景变化。[4]</p>
-<p>文章归纳的挑战有：</p>
-<p>1）由于卫星的运行、抖动等原因，卫星图像总有微小变化。变化分为两部分，全局变化和由视差引起的局部伪运动。</p>
-<p>2）帧宽度很大，分辨率和对比度都较低，运动物体的尺寸很小且缺少特征信息。</p>
-<p>因此，</p>
-<p>1）对于大宽度动态场景，要对全局运动加以补偿，每一帧的背景应该是固定的。</p>
-<p>2）建立准确而稳健的背景模型，并分割和提取小物体，另外针对经典的补偿方法需要加以改进。</p>
-<h2 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h2><p>1.利用中间帧建立背景模型</p>
-<p>2.估计真贱运动模型，并以此为基础做运动补偿，通过比较补偿好的帧与背景帧来得到目标的分割结果。</p>
-<p>3.应用连接分量分析的方法提取潜在目标，根据检测到的分割信息和候选的伪运动区域更新背景模型，来处理下一帧。</p>
-<p><img src="/Motion-Detection-in-Satellite-Video/image-20201122152805262.png" alt="image-20201122152805262"></p>
-<h2 id="具体各部分算法"><a href="#具体各部分算法" class="headerlink" title="具体各部分算法"></a>具体各部分算法</h2><h3 id="3-1-改进ViBe背景模型"><a href="#3-1-改进ViBe背景模型" class="headerlink" title="3.1 改进ViBe背景模型"></a>3.1 改进ViBe背景模型</h3><p>本文的背景模型用ViBe法，仅在一帧的基础上完成模型建立。</p>
-<p>考虑到局部伪运动，对vibe模型进行调整，引入更新因子<strong>a</strong>，表示背景模型的更新频率。</p>
-<h3 id="3-2-全局运动补偿"><a href="#3-2-全局运动补偿" class="headerlink" title="3.2 全局运动补偿"></a>3.2 全局运动补偿</h3><p>本章对全局运动进行补偿。本文提出一种A global motion compensation method of blocked  forward-backward LK optical flow。</p>
-<p>首先，对每个block使用uniform blocking processing方法提取出Good Feartures。</p>
-<p>然后，利用光流跟踪跟踪Good Feature，实现了相关点集的匹配，再根据模型中相关点集估计每个block的运动模型。最后，收集整理变换结果完成整帧的运动补偿。</p>
-<h4 id="图像分块和Good-Feature提取"><a href="#图像分块和Good-Feature提取" class="headerlink" title="图像分块和Good Feature提取"></a>图像分块和Good Feature提取</h4><p>将参考帧打成$M\times N$块，每个小块记为$B_{mn}$，第m行第n列个块。然后使用[15]的Good Feature方法，用一个3,3滤波窗。最小因子和距离的取值可以设置得稍小，保证在低频弱特征的区域提取出足够多的好特征，且分布均匀。</p>
-<p><img src="/Motion-Detection-in-Satellite-Video/image-20201122154556809.png" alt="image-20201122154556809"></p>
-<h4 id="前后LK光流的点跟踪与匹配"><a href="#前后LK光流的点跟踪与匹配" class="headerlink" title="前后LK光流的点跟踪与匹配"></a>前后LK光流的点跟踪与匹配</h4><p>理想情况下向前跟踪一步再回来应该回到同一个地方，但是实际上会有误差，这个误差就是要消掉或者说控制的。</p>
-<p><img src="/Motion-Detection-in-Satellite-Video/image-20201122155051112.png" alt="image-20201122155051112"></p>
-<p><img src="/Motion-Detection-in-Satellite-Video/image-20201122155418650.png" alt="image-20201122155418650"></p>
-<h4 id="模型估计和运动补偿"><a href="#模型估计和运动补偿" class="headerlink" title="模型估计和运动补偿"></a>模型估计和运动补偿</h4><p>匹配完成后，利用相关点估计block的帧间2D仿射模型参数并建立集合变换关系。同时，the MSACM-estimator Sample Consensus algorithm [16] 可以用来消除有误差的匹配点，进一步优化精度。2维帧间仿射参数矩阵如下：<br>$$<br>\begin{bmatrix}<br>a_1, a_2, 0\<br>a_3, a_4, 0\<br>a_5, a_6, 1\<br>\end{bmatrix}<br>$$<br>然后，逆解的数字微分校正方法被使用[17]。一个空白图片被作为补偿帧建起来，根据变换关系，原补偿帧的小块就按照变换关系到空白帧上。这就完成了全局补偿。</p>
-<p><img src="/Motion-Detection-in-Satellite-Video/image-20201122160332829.png" alt="image-20201122160332829"></p>
-<h4 id="运动检测和分割"><a href="#运动检测和分割" class="headerlink" title="运动检测和分割"></a>运动检测和分割</h4><p>使用ViBe法建立背景模型后的运动检测就是那一套，当所有移动像素都分类玩，前北京的二值图像就获得了，在此基础上进行连通成分分析，将每个连通分量当做候选并进行分割。</p>
-<h4 id="判断伪运动和背景模型更新"><a href="#判断伪运动和背景模型更新" class="headerlink" title="判断伪运动和背景模型更新"></a>判断伪运动和背景模型更新</h4><p>分割出的候选目标由3个主要部分构成，真实运动目标，视差伪目标和归目标。伪运动的判断目的在于找到后两种</p>
-<p>首先，对于时差伪目标，选取准则如下：1）利用连通分量节点的坐标，提取目标的最小包围矩形。计算长宽比，如果长宽比大于3.5，则使该目标成为潜在的“伪运动”。2）  从目标候选区域提取边缘。确认靶标与边沿的重叠面积是否超过靶标面积的90%。如果是这样，那么目标就可以被视为潜在的“伪运动”，</p>
-<p>根据这设置伪目标区域：将潜在“伪运动”目标的包络矩形向外扩展1个像素，同时向运动模型的平移矢量方向向外扩展10个像素，得到更新因子矩形A。</p>
-<p><img src="/Motion-Detection-in-Satellite-Video/image-20201122164026047.png" alt="image-20201122164026047"></p>
-<p>根据“鬼”目标的特点，确定了判断方法：记录运动目标第一次出现的位置。如果运动目标连续10帧静止，则视为潜在的“幽灵”目标</p>
-<p>然后对背景进行更新，更新策略如下：每个像素背景模型都有一个更新因子a，每个像素背景模型的更新频率是1/a，</p>
-<p><img src="/Motion-Detection-in-Satellite-Video/image-20201122164318201.png" alt="image-20201122164318201"></p>
-<p>这种更新策略保证伪目标都进入背景中</p>
+<h2 id="算法框架"><a href="#算法框架" class="headerlink" title="算法框架"></a>算法框架</h2><p>2-step：</p>
+<p>step1：建立运动热力图</p>
+<p>step2：基于局部显著性的背景模型</p>
+<p><img src="/Small-Moving-Vehicle-Detection-in-a-Satellite-Video-of-an-Urban-Area/image-20201123093520970.png" alt="image-20201123093520970"></p>
+<h3 id="2-1-热力图构建"><a href="#2-1-热力图构建" class="headerlink" title="2.1 热力图构建"></a>2.1 热力图构建</h3><p>运动车辆是在固定区域里形式的，包括不同的高速公路和狭窄道路。如果实现对运动区域进行分割，则可以有效的抑制误检测。热力图构建就是这个目的。</p>
+<h4 id="2-1-1-运动检测"><a href="#2-1-1-运动检测" class="headerlink" title="2.1.1 运动检测"></a>2.1.1 运动检测</h4><p>文章没有对背景进行补偿，他觉得不需要。直接用ViBe法建立背景模型。</p>
+<h4 id="2-1-2-基于轨迹的虚警过滤器"><a href="#2-1-2-基于轨迹的虚警过滤器" class="headerlink" title="2.1.2 基于轨迹的虚警过滤器"></a>2.1.2 基于轨迹的虚警过滤器</h4><p>将每个连通域认为是一个检测结果，有时可以用形态来判别，但是任务目标的大小普遍和噪声差不多大，文章提出使用轨迹判断是真是假。</p>
+<p>通过匈牙利算法提取轨迹，匈牙利算法即：</p>
+<p>假设第t帧有m个检测结果，第t+1帧有n个检测结果，两帧的目标应该有一对一关系。记$C_{ij}$是第t帧的第i个目标与第（t+1)帧第j个目标的欧氏距离，$X_{ij}$是其关联关系，如果判定这两个目标是同一个目标，那么$X_{ij}$就是1。所以任务就是最小化总距离。<br>$$<br>z = min\sum_{i=1}^m \sum_{j=1}^nC_{ij}X_{ij}<br>$$<br>如果m&lt;n，后帧检测的多，没匹配上的检测当做新的；如果m&gt;n，那么未关联的目标可能是真的也可能是假的。真目标的轨迹在时域上应该是连续的，因此保留长度大于阈值长度$T_{length}$的轨迹，并且轨迹方向稳定。</p>
+<h4 id="2-1-3-运动热力图"><a href="#2-1-3-运动热力图" class="headerlink" title="2.1.3 运动热力图"></a>2.1.3 运动热力图</h4><p>应用距离变换建立热力图，距离变换是二值图中一种特殊变换，会产生一张灰度图。每一个点到距离的最短路径长度就是结果，并设置了一个阈值$T_{heat}$为15</p>
+<h3 id="2-2-局部显著性背景模型"><a href="#2-2-局部显著性背景模型" class="headerlink" title="2.2 局部显著性背景模型"></a>2.2 局部显著性背景模型</h3><h4 id="2-2-1-建立局部显著图"><a href="#2-2-1-建立局部显著图" class="headerlink" title="2.2.1 建立局部显著图"></a>2.2.1 建立局部显著图</h4><p>在滑窗的基础上计算显著性<br>$$<br>Sal(k)=\sum_{\forall i \in \omega}\lVert I_k - I_i\rVert<br>$$<br>其中，$I_i$是像素值，$\omega$是滑窗，这个意思也就是与相邻点对比的灰度情况，数越大越显著，经验公式里滑窗大小为3。</p>
+<p>对每个点都这样做，就得到了显著图。</p>
+<h4 id="2-2-2-基于显著性的运动检测"><a href="#2-2-2-基于显著性的运动检测" class="headerlink" title="2.2.2 基于显著性的运动检测"></a>2.2.2 基于显著性的运动检测</h4><p>在显著图的基础上使用ViBe</p>
 
     </div>
 
@@ -322,9 +297,9 @@
           <div class="post-tags">
               <a href="/tags/%E7%A7%BB%E5%8A%A8%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" rel="tag"><i class="fa fa-tag"></i> 移动目标检测</a>
               <a href="/tags/%E4%BC%A0%E7%BB%9F%E6%96%B9%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 传统方法</a>
-              <a href="/tags/%E8%83%8C%E6%99%AF%E5%B7%AE%E5%88%86%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 背景差分法</a>
-              <a href="/tags/%E5%85%89%E6%B5%81%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 光流法</a>
-              <a href="/tags/2017/" rel="tag"><i class="fa fa-tag"></i> 2017</a>
+              <a href="/tags/ViBe/" rel="tag"><i class="fa fa-tag"></i> ViBe</a>
+              <a href="/tags/%E7%83%AD%E5%8A%9B%E5%9B%BE/" rel="tag"><i class="fa fa-tag"></i> 热力图</a>
+              <a href="/tags/2016/" rel="tag"><i class="fa fa-tag"></i> 2016</a>
           </div>
 
         
@@ -333,13 +308,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/Error-Bounded-Foreground-and-Background-Modeling-for-Moving-Object-Detection-in-Satellite-Videos.html" rel="prev" title="Error Bounded Foreground and Background Modeling for Moving Object Detection in Satellite Videos">
-      <i class="fa fa-chevron-left"></i> Error Bounded Foreground and Background Modeling for Moving Object Detection in Satellite Videos
+    <a href="/Motion-Detection-in-Satellite-Video.html" rel="prev" title="Motion Detection in Satellite Video">
+      <i class="fa fa-chevron-left"></i> Motion Detection in Satellite Video
     </a></div>
-      <div class="post-nav-item">
-    <a href="/Small-Moving-Vehicle-Detection-in-a-Satellite-Video-of-an-Urban-Area.html" rel="next" title="Small Moving Vehicle Detection in a Satellite Video of an Urban Area">
-      Small Moving Vehicle Detection in a Satellite Video of an Urban Area <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -399,7 +371,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">算法流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E5%90%84%E9%83%A8%E5%88%86%E7%AE%97%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">具体各部分算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%94%B9%E8%BF%9BViBe%E8%83%8C%E6%99%AF%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 改进ViBe背景模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%85%A8%E5%B1%80%E8%BF%90%E5%8A%A8%E8%A1%A5%E5%81%BF"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 全局运动补偿</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E5%88%86%E5%9D%97%E5%92%8CGood-Feature%E6%8F%90%E5%8F%96"><span class="nav-number">3.2.1.</span> <span class="nav-text">图像分块和Good Feature提取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E5%90%8ELK%E5%85%89%E6%B5%81%E7%9A%84%E7%82%B9%E8%B7%9F%E8%B8%AA%E4%B8%8E%E5%8C%B9%E9%85%8D"><span class="nav-number">3.2.2.</span> <span class="nav-text">前后LK光流的点跟踪与匹配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E4%BC%B0%E8%AE%A1%E5%92%8C%E8%BF%90%E5%8A%A8%E8%A1%A5%E5%81%BF"><span class="nav-number">3.2.3.</span> <span class="nav-text">模型估计和运动补偿</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8%E6%A3%80%E6%B5%8B%E5%92%8C%E5%88%86%E5%89%B2"><span class="nav-number">3.2.4.</span> <span class="nav-text">运动检测和分割</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E4%BC%AA%E8%BF%90%E5%8A%A8%E5%92%8C%E8%83%8C%E6%99%AF%E6%A8%A1%E5%9E%8B%E6%9B%B4%E6%96%B0"><span class="nav-number">3.2.5.</span> <span class="nav-text">判断伪运动和背景模型更新</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6"><span class="nav-number">1.</span> <span class="nav-text">算法框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E7%83%AD%E5%8A%9B%E5%9B%BE%E6%9E%84%E5%BB%BA"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 热力图构建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-%E8%BF%90%E5%8A%A8%E6%A3%80%E6%B5%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">2.1.1 运动检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-%E5%9F%BA%E4%BA%8E%E8%BD%A8%E8%BF%B9%E7%9A%84%E8%99%9A%E8%AD%A6%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.1.2 基于轨迹的虚警过滤器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-%E8%BF%90%E5%8A%A8%E7%83%AD%E5%8A%9B%E5%9B%BE"><span class="nav-number">1.1.3.</span> <span class="nav-text">2.1.3 运动热力图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%B1%80%E9%83%A8%E6%98%BE%E8%91%97%E6%80%A7%E8%83%8C%E6%99%AF%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">2.2 局部显著性背景模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-%E5%BB%BA%E7%AB%8B%E5%B1%80%E9%83%A8%E6%98%BE%E8%91%97%E5%9B%BE"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.2.1 建立局部显著图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-%E5%9F%BA%E4%BA%8E%E6%98%BE%E8%91%97%E6%80%A7%E7%9A%84%E8%BF%90%E5%8A%A8%E6%A3%80%E6%B5%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2.2 基于显著性的运动检测</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
