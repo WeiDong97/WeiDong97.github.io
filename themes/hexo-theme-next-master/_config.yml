@@ -189,7 +189,7 @@ social:
   #Skype: skype:yourname?call|chat || fab fa-skype
 
 social_icons:
-  enable: false
+  enable: trur
   icons_only: false
   transition: true
 
