@@ -613,7 +613,7 @@ valine:
   enable: true
   appid: cg1dkuXYgGxUNSTexj9wG3MA-gzGzoHsz
   appkey: M8bYs4EdrjJVDvXrAy8FnToX
-  notify: false # Mail notifier
+  notify: true # Mail notifier
   verify: false # Verification code
   placeholder: Just go go # Comment box placeholder
   avatar: mm # Gravatar style
