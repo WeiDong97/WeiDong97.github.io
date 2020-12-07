@@ -29,7 +29,4 @@ tags:
 
 ## 一些细节
 
-论文针对的是WAMI类型图像，与凝视卫星视频图像有差距，本文YOLO训练使用卫星数据Vehicle Detection in Aerial Imagery (VEDAI)
-dataset，类别有nine vehicle classes (truck, camping car, tractor, boat, plane, pick-up, car, van and other），GSD为12.5cm，训练时将VEDAI的三个子类car、pick-up和van合并为一个组合的vehicle类；测试时使用目标数据，并将$2000\times2000$的数据裁剪为$500\times 500$
-
-大小送入YOLO。
+论文针对的是WAMI类型图像，与凝视卫星视频图像有差距，本文YOLO训练使用卫星数据Vehicle Detection in Aerial Imagery (VEDAI) dataset，类别有nine vehicle classes (truck, camping car, tractor, boat, plane, pick-up, car, van and other），GSD为12.5cm，训练时将VEDAI的三个子类car、pick-up和van合并为一个组合的vehicle类；测试时使用目标数据，并将$2000\times2000$的数据裁剪为$500\times 500$大小送入YOLO。
